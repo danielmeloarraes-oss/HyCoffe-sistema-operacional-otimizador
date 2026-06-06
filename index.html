@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyCoffee OS - O Sistema Operacional Minimalista de Café</title>
+    <style>
+        /* Variáveis de Cor - Paleta de Café Exclusiva */
+        :root {
+            --bg-main: #f5ebe0;       /* Creme suave para o fundo */
+            --bg-card: #e3d5ca;       /* Tom cappuccino para os blocos */
+            --text-dark: #4a3728;     /* Marrom café escuro para legibilidade */
+            --text-muted: #7f5539;    /* Marrom médio para detalhes */
+            --accent: #b08968;        /* Tom de café com leite para botões e hover */
+            --accent-dark: #6c584c;   /* Marrom bem fechado */
+            --white: #ffffff;
+        }
+
+        /* Configurações Globais para o WeasyPrint */
+        @page {
+            size: A4;
+            margin: 18mm 15mm;
+            background-color: #f5ebe0; /* Força o fundo nas margens do PDF */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-main);
+            line-height: 1.5;
+            font-size: 11pt;
+        }
+
+        /* Cabeçalho do Site */
+        header {
+            text-align: center;
+            padding: 20px 0 30px 0;
+            border-bottom: 2px dashed var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .logo-area {
+            font-size: 26pt;
+            margin-bottom: 5px;
+        }
+
+        header h1 {
+            font-size: 22pt;
+            color: var(--accent-dark);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 12pt;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Seção Principal / Call to Action */
+        .hero {
+            text-align: center;
+            background-color: var(--bg-card);
+            padding: 30px 20px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 6px rgba(108, 88, 76, 0.05);
+        }
+
+        .hero h2 {
+            font-size: 15pt;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        /* Botão de Download Estilizado */
+        .btn-download {
+            display: inline-block;
+            background-color: var(--text-dark);
+            color: var(--white);
+            font-weight: bold;
+            font-size: 13pt;
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid var(--text-dark);
+            transition: all 0.2s ease;
+        }
+
+        .version-info {
+            font-size: 9.5pt;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Grid de Benefícios (Simulado via Tabela para WeasyPrint) */
+        .features-title {
+            font-size: 14pt;
+            color: var(--accent-dark);
+            margin-bottom: 15px;
+            border-left: 5px solid var(--text-muted);
+            padding-left: 10px;
+        }
+
+        .features-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            margin-bottom: 30px;
+        }
+
+        .features-table td {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            vertical-align: top;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .feature-icon {
+            font-size: 20pt;
+            width: 50px;
+            text-align: center;
+        }
+
+        .feature-text h3 {
+            font-size: 12pt;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 10pt;
+            color: var(--text-muted);
+        }
+
+        /* Instruções de Instalação */
+        .instructions {
+            background-color: var(--white);
+            padding: 20px 25px;
+            border-radius: 12px;
+            border: 1px solid var(--bg-card);
+            margin-bottom: 30px;
+        }
+
+        .instructions h2 {
+            font-size: 13pt;
+            color: var(--accent-dark);
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            font-size: 10.5pt;
+        }
+
+        .code-box {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #fcfbf9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 9.5pt;
+            color: #c7254e;
+            border: 1px solid #e3d5ca;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-card);
+            font-size: 9pt;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">☕</div>
+        <h1>HyCoffee OS</h1>
+        <p>Estética, leveza e alta performance inspirada na sua bebida favorita.</p>
+    </header>
+
+    <div class="hero">
+        <h2>Pronto para transformar a sua área de trabalho?</h2>
+        <p>Baixe agora a pasta completa do sistema otimizado que carrega seus jogos instantaneamente.</p>
+        
+        <!-- LINK DE DOWNLOAD DO GITHUB RELEASES (Ajuste o link abaixo quando criar o release) -->
+        <a href="https://github.com/SEU_USUARIO/HyCoffee-OS/releases/latest/download/HyCoffee-OS.zip" class="btn-download">
+            ⬇ Baixar HyCoffee OS (.ZIP)
+        </a>
+        
+        <div class="version-info">Versão Atual: v1.0.0 | Super Leve & Otimizado</div>
+    </div>
+
+    <h2 class="features-title">Por que usar o HyCoffee OS?</h2>
+    
+    <table class="features-table">
+        <tr>
+            <td class="feature-icon">⚡</td>
+            <td class="feature-text">
+                <h3>Abertura Ultra Rápida</h3>
+                <p>Abra e carregue jogos pesados (como o Roblox) em menos de 2 segundos. O sistema libera memória RAM instantaneamente ao fechar processos.</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="feature-icon">🪶</td>
+            <td class="feature-text">
+                <h3>Ultra Leve & Fluido</h3>
+                <p>Construído focando apenas no essencial. Sem telemetria pesada puxando o uso do seu processador para 100% em segundo plano.</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="feature-icon">☕</td>
+            <td class="feature-text">
+                <h3>Visual Totalmente Customizado</h3>
+                <p>Personalização completa com paleta marrom minimalista de café e ícones exclusivos direto na barra de tarefas do Windows.</p>
+            </td>
+        </tr>
+    </table>
+
+    <div class="instructions">
+        <h2>🚀 Como instalar no seu Computador</h2>
+        <ol>
+            <li>Clique no botão de download acima para baixar o arquivo compactado do sistema.</li>
+            <li>Extraia a pasta <span class="code-box">HyCoffee OS</span> em qualquer local do seu computador.</li>
+            <li>Abra a pasta e dê dois cliques no arquivo <span class="code-box">inicializar.bat</span> (ou o seu arquivo de inicialização).</li>
+            <li>Pronto! O sistema vai envelopar a sua interface e rodar em segundo plano de forma super leve.</li>
+        </ol>
+    </div>
+
+    <footer>
+        <p>Desenvolvido com 🤎 por Daniel. Código aberto disponível via GitHub Releases.</p>
+    </footer>
+
+</body>
+</html>
