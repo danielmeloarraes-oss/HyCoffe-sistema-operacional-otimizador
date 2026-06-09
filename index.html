@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyCoffee OS - O Sistema Operacional Minimalista de Café</title>
+    <style>
+        /* Variáveis de Cor - Paleta de Café Exclusiva */
+        :root {
+            --bg-main: #f5ebe0;       /* Creme suave para o fundo */
+            --bg-card: #e3d5ca;       /* Tom cappuccino para os blocos */
+            --text-dark: #4a3728;     /* Marrom café escuro para legibilidade */
+            --text-muted: #7f5539;    /* Marrom médio para detalhes */
+            --accent: #b08968;        /* Tom de café com leite para botões e hover */
+            --accent-dark: #6c584c;   /* Marrom bem fechado */
+            --white: #ffffff;
+            --gold: #d4a373;          /* Destaque para a Versão 2 */
+        }
+
+        /* Configurações Globais para o WeasyPrint */
+        @page {
+            size: A4;
+            margin: 18mm 15mm;
+            background-color: #f5ebe0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-main);
+            line-height: 1.5;
+            font-size: 11pt;
+        }
+
+        /* Cabeçalho do Site */
+        header {
+            text-align: center;
+            padding: 20px 0 30px 0;
+            border-bottom: 2px dashed var(--accent);
+            margin-bottom: 30px;
+        }
+
+        .logo-area {
+            font-size: 26pt;
+            margin-bottom: 5px;
+        }
+
+        header h1 {
+            font-size: 22pt;
+            color: var(--accent-dark);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 12pt;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Container dos Cards de Download (Lado a Lado) */
+        .download-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .download-card {
+            flex: 1;
+            background-color: var(--bg-card);
+            padding: 25px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(108, 88, 76, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 2px solid transparent;
+        }
+
+        /* Destaque premium para a versão 2 */
+        .download-card.v2-highlight {
+            border-color: var(--text-muted);
+            background-color: #ede0d4;
+            position: relative;
+        }
+
+        .badge-v2 {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--text-dark);
+            color: var(--white);
+            font-size: 8pt;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .download-card h2 {
+            font-size: 14pt;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .download-card .specs {
+            font-size: 9.5pt;
+            color: var(--text-muted);
+            margin: 15px 0;
+            text-align: left;
+            list-style-type: "☕ ";
+            padding-left: 15px;
+        }
+
+        /* Botões de Download */
+        .btn-download {
+            display: block;
+            background-color: var(--text-dark);
+            color: var(--white);
+            font-weight: bold;
+            font-size: 11pt;
+            padding: 12px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: auto;
+            border: 2px solid var(--text-dark);
+            transition: all 0.2s ease;
+        }
+
+        .btn-download.btn-v1 {
+            background-color: transparent;
+            color: var(--text-dark);
+        }
+
+        .version-info {
+            font-size: 9pt;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Grid de Benefícios */
+        .features-title {
+            font-size: 14pt;
+            color: var(--accent-dark);
+            margin-bottom: 15px;
+            border-left: 5px solid var(--text-muted);
+            padding-left: 10px;
+        }
+
+        .features-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            margin-bottom: 30px;
+        }
+
+        .features-table td {
+            background-color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            vertical-align: top;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .feature-icon {
+            font-size: 20pt;
+            width: 50px;
+            text-align: center;
+        }
+
+        .feature-text h3 {
+            font-size: 12pt;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 10pt;
+            color: var(--text-muted);
+        }
+
+        /* Instruções de Instalação */
+        .instructions {
+            background-color: var(--white);
+            padding: 20px 25px;
+            border-radius: 12px;
+            border: 1px solid var(--bg-card);
+            margin-bottom: 30px;
+        }
+
+        .instructions h2 {
+            font-size: 13pt;
+            color: var(--accent-dark);
+            margin-bottom: 15px;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+            font-size: 10.5pt;
+        }
+
+        .code-box {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #fcfbf9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 9.5pt;
+            color: #c7254e;
+            border: 1px solid #e3d5ca;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--bg-card);
+            font-size: 9pt;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">☕</div>
+        <h1>HyCoffee OS</h1>
+        <p>Estética, leveza e alta performance inspirada na sua bebida favorita.</p>
+    </header>
+
+    <div class="download-container">
+        
+        <div class="download-card">
+            <div>
+                <h2>HyCoffee OS v1.0.0</h2>
+                <p style="font-size: 10pt; color: var(--text-muted);">A base clássica leve e minimalista.</p>
+                <ul class="specs">
+                    <li>Inicialização rápida por Script em Lote (.bat).</li>
+                    <li>Otimização básica para jogos (Roblox/Minecraft).</li>
+                    <li>Interface web simples e direta.</li>
+                </ul>
+            </div>
+            <div>
+                <a href="https://github.com/danielmeloarraes-oss/HyCoffe-sistema-operacional-otimizador/releases/download/v1.0.0/HyCoffe.OS.zip" class="btn-download btn-v1">
+                    ⬇ Baixar Classic (v1)
+                </a>
+                <div class="version-info">Foco em PCs super antigos</div>
+            </div>
+        </div>
+
+        <div class="download-card v2-highlight">
+            <span class="badge-v2">Recomendado</span>
+            <div>
+                <h2>HyCoffee OS 2 (Nova Era)</h2>
+                <p style="font-size: 10pt; color: var(--text-muted);">Arquitetura potente baseada no motor Hypert.</p>
+                <ul class="specs">
+                    <li>Motor Electron nativo com isolamento de WebApps.</li>
+                    <li>Launcher invisível exclusivo (HyCoffee OS.vbs).</li>
+                    <li>Integração total ao Gerenciador de Tarefas do Windows.</li>
+                    <li>Módulos independentes (Menu, Central, Pesquisa e Code).</li>
+                </ul>
+            </div>
+            <div>
+                <a href="https://github.com/danielmeloarraes-oss/HyCoffe-sistema-operacional-otimizador/releases/download/v2.0.0/HyCoffe.OS.2.zip" class="btn-download">
+                    🚀 Baixar HyCoffee OS 2 (.ZIP)
+                </a>
+                <div class="version-info">Versão Atual: v2.0.0 | Automação Máxima</div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="features-title">Por que usar o HyCoffee OS?</h2>
+    
+    <table class="features-table">
+        <tr>
+            <td class="feature-icon">⚡</td>
+            <td class="feature-text">
+                <h3>Abertura Ultra Rápida</h3>
+                <p>Abra e carregue jogos pesados (como o Roblox) em menos de 2 segundos. O sistema libera memória RAM instantaneamente ao fechar processos.</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="feature-icon">🪶</td>
+            <td class="feature-text">
+                <h3>Ultra Leve & Fluido</h3>
+                <p>Construído focando apenas no essencial. Sem telemetria pesada puxando o uso do seu processador para 100% em segundo plano.</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="feature-icon">☕</td>
+            <td class="feature-text">
+                <h3>Ambiente Modular (Exclusivo V2)</h3>
+                <p>O motor Hypert e as escutas IPC criam uma barra de tarefas esticada e janelas flutuantes que funcionam como um sistema operacional real sobre o Windows.</p>
+            </td>
+        </tr>
+    </table>
+
+    <div class="instructions">
+        <h2>🚀 Como instalar o HyCoffee OS 2 no seu Computador</h2>
+        <ol>
+            <li>Clique no botão de download da **Versão 2** acima para baixar o arquivo compactado.</li>
+            <li>Extraia a pasta completa em qualquer local seguro do seu computador.</li>
+            <li>Abra o terminal (CMD) na pasta e execute <span class="code-box">npm install</span> para montar o ecossistema do Electron.</li>
+            <li>Dê dois cliques no inicializador invisível <span class="code-box">HyCoffee OS.vbs</span> para dar a partida.</li>
+            <li>Pronto! O sistema vai se integrar de forma oculta no Gerenciador de Tarefas e dominar o boot com maestria.</li>
+        </ol>
+    </div>
+
+    <footer>
+        <p>Desenvolvido com 🤎 por Daniel & LegendaryNovice. Código aberto disponível via GitHub Releases.</p>
+    </footer>
+
+</body>
+</html>
